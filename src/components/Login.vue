@@ -1,4 +1,6 @@
 <script>
+import {login_request} from '@/api/user_requests.js'
+import { showDialog } from 'vant';
 export default {
   data() {
     return {
@@ -7,9 +9,22 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
-      // ...
-      console.log("Submited")
+    onSubmit(){
+      login_request(this.username,this.password).then((data) =>{
+        if(data.error) {
+          showDialog({
+            title: 'Ups...',
+            message: 'Credetials were not valid',
+            confirmButtonText: 'Ok'
+          })
+        } else {
+          let accessToken = data.data.access_token.access_token
+          let refreshToken = data.data.access_token.refresh_token
+          localStorage.setItem('accessToken',accessToken)
+          localStorage.setItem('refreshToken',refreshToken)
+          this.$router.push('/home')
+        }
+      })
     },
   }
 }
@@ -41,6 +56,7 @@ export default {
         </van-button>
       </div>
     </van-form>
+    New? Create an account
   </main>
 </template>
 
