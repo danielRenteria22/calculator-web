@@ -61,7 +61,7 @@ export default {
       this.oder_by = selectedOptions[0].value
       this.order = selectedOptions[1].value
       this.loadRecords()
-      // fieldValue = selectedOptions[0].text;
+      this.fieldValue = `${selectedOptions[0].text} - ${selectedOptions[1].text}`;
     }
   }
 }
