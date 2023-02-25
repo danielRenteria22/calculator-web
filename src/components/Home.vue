@@ -35,6 +35,19 @@ export default {
 
 <template>
   <main>
+    <van-nav-bar title="Cloud calculator">
+        <template #right>
+            <van-row gutter="60">
+                <van-col span="8">
+                    <van-button type="primary" to="records">Records</van-button>
+                </van-col>
+                <van-col span="8">
+                    <van-button type="danger">Logout</van-button>
+                </van-col>
+            </van-row>
+        </template>
+    </van-nav-bar>
+
     <van-form @submit="onSubmit">
       <van-cell-group inset>
         <van-field 
