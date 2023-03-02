@@ -111,52 +111,56 @@ export default {
         </template>
     </van-nav-bar>
 
-    <h1>Records</h1>
-
-    <van-field
-      v-model="fieldValue"
-      is-link
-      readonly
-      label="Order"
-      placeholder="Choose ordering type"
-      @click="showPicker = true"
-    />
-
-    <van-popup v-model:show="showPicker" round position="bottom">
-      <van-picker 
-        title="Order" 
-        :columns="columns"
-        @cancel="showPicker = false"
-        @confirm="onConfirm" 
-      />
-    </van-popup>
-
-
-      <van-row>
-        <van-col span="4">Operation</van-col>
-        <van-col span="4">Result</van-col>
-        <van-col span="4">Cost</van-col>
-        <van-col span="4">Balance</van-col>
-        <van-col span="4">Delete</van-col>
-      </van-row>
-      <br/>
+    <van-row justify="center">
+			<van-col span="14">
+        <h1>Records</h1>
     
-      <van-row v-for="record in records" :key="record.id">
-        <van-col span="4">{{ record.operation_id }}</van-col>
-        <van-col span="4">{{ record.operation_response }}</van-col>
-        <van-col span="4">{{ record.amount }}</van-col>
-        <van-col span="4">{{ record.user_balance }}</van-col>
-        <van-col span="4">
-          <van-button type="danger" @click="deleteRecord(record.id)">Delete</van-button>
-        </van-col>
-      </van-row>
-    <van-pagination 
-      v-model="currentPage" 
-      :page-count="page_count"
-      :total-items="total_items" 
-      mode="simple"
-      @change="onPageChange"
-    />
+        <van-field
+          v-model="fieldValue"
+          is-link
+          readonly
+          label="Order"
+          placeholder="Choose ordering type"
+          @click="showPicker = true"
+        />
+    
+        <van-popup v-model:show="showPicker" round position="bottom">
+          <van-picker 
+            title="Order" 
+            :columns="columns"
+            @cancel="showPicker = false"
+            @confirm="onConfirm" 
+          />
+        </van-popup>
+    
+    
+          <van-row>
+            <van-col span="4">Operation</van-col>
+            <van-col span="4">Result</van-col>
+            <van-col span="4">Cost</van-col>
+            <van-col span="4">Balance</van-col>
+            <van-col span="4">Delete</van-col>
+          </van-row>
+          <br/>
+        
+          <van-row v-for="record in records" :key="record.id">
+            <van-col span="4">{{ record.operation_id }}</van-col>
+            <van-col span="4">{{ record.operation_response }}</van-col>
+            <van-col span="4">{{ record.amount }}</van-col>
+            <van-col span="4">{{ record.user_balance }}</van-col>
+            <van-col span="4">
+              <van-button type="danger" @click="deleteRecord(record.id)">Delete</van-button>
+            </van-col>
+          </van-row>
+        <van-pagination 
+          v-model="currentPage" 
+          :page-count="page_count"
+          :total-items="total_items" 
+          mode="simple"
+          @change="onPageChange"
+        />
+      </van-col>
+    </van-row>
 
 
       

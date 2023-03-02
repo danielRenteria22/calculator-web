@@ -48,38 +48,45 @@ export default {
         </template>
     </van-nav-bar>
 
-    <van-form @submit="onSubmit">
-      <van-cell-group inset>
-        <van-field 
-            v-model="operand1" 
-            type="number" 
-            label="Number" 
-            :rules="[{ required: true, message: 'Operand is required' }]"
-        />
+    <van-row justify="center">
+			<van-col span="8">
+        <van-form @submit="onSubmit">
+          <van-cell-group inset>
+            <van-field 
+                v-model="operand1" 
+                type="number" 
+                label="Number" 
+                :rules="[{ required: true, message: 'Operand is required' }]"
+            />
+    
+            <van-field 
+                v-model="operand2" 
+                type="number" 
+                label="Number" 
+                :rules="[{ required: true, message: 'Operand is required' }]"
+            />
+    
+            <van-radio-group v-model="operation" direction="horizontal">
+              <van-space>
+                <van-radio name="ADDITION">Addition</van-radio>
+                <van-radio name="SUBSTRACTION">Substraction</van-radio>
+                <van-radio name="MULTIPLICATION">Multiplication</van-radio>
+                <van-radio name="DIVISION">Division</van-radio>
+                <van-radio name="SQUARED_ROOT">Squared root</van-radio>
+                <van-radio name="RANDOM_STRING">Random string</van-radio>
+              </van-space>
+            </van-radio-group>
+    
+          </van-cell-group>
+          <div style="margin: 16px;">
+            <van-button round block type="primary" native-type="submit">
+              Calculate
+            </van-button>
+          </div>
+        </van-form>
+      </van-col>
+    </van-row>
 
-        <van-field 
-            v-model="operand2" 
-            type="number" 
-            label="Number" 
-            :rules="[{ required: true, message: 'Operand is required' }]"
-        />
-
-        <van-radio-group v-model="operation" direction="horizontal">
-            <van-radio name="ADDITION">Addition</van-radio>
-            <van-radio name="SUBSTRACTION">Substraction</van-radio>
-            <van-radio name="MULTIPLICATION">Multiplication</van-radio>
-            <van-radio name="DIVISION">Division</van-radio>
-            <van-radio name="SQUARED_ROOT">Squared root</van-radio>
-            <van-radio name="RANDOM_STRING">Random string</van-radio>
-        </van-radio-group>
-
-      </van-cell-group>
-      <div style="margin: 16px;">
-        <van-button round block type="primary" native-type="submit">
-          Calculate
-        </van-button>
-      </div>
-    </van-form>
   </main>
 </template>
 
