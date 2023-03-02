@@ -96,6 +96,11 @@ export default {
       localStorage.setItem('accessToken', null)
 			localStorage.setItem('refreshToken', null)
       this.$router.push('/')
+    },
+    isNumeric(str) {
+      if (typeof str != "string") return false // we only process strings!  
+      return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+            !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
     }
   }
 }
@@ -150,7 +155,7 @@ export default {
         
           <van-row v-for="record in records" :key="record.id">
             <van-col span="4">{{ record.operation_id }}</van-col>
-            <van-col span="4">{{ record.operation_response }}</van-col>
+            <van-col span="4">{{ (isNumeric(record.operation_response))?  parseFloat(record.operation_response).toFixed(2) : record.operation_response}}</van-col>
             <van-col span="4">{{ record.amount }}</van-col>
             <van-col span="4">{{ record.user_balance }}</van-col>
             <van-col span="4">
