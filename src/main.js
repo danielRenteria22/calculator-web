@@ -5,7 +5,7 @@ import Records from './components/Records.vue'
 
 import App from './App.vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { Form, Field, CellGroup, Button, Dialog, RadioGroup, Radio, NavBar, Col, Row ,Pagination, Picker, Popup} from 'vant';
+import { Form, Field, CellGroup, Button, Dialog, RadioGroup, Radio, NavBar, Col, Row ,Pagination, Picker, Popup, Cell} from 'vant';
 
 import 'vant/lib/index.css';
 
@@ -37,4 +37,5 @@ app.use(Row);
 app.use(Pagination);
 app.use(Picker);
 app.use(Popup);
+app.use(Cell);
 app.mount('#app')
