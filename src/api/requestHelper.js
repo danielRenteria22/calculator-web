@@ -1,6 +1,19 @@
-function getBaseUrl(subdomain = null) {
-    return 'http://127.0.0.1:5000'
-}
+function getBaseUrl(subdomain=null) {
+    let host = null
+    let protocol = null
+    if (location.hostname.includes('localhost')  || location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "") {
+        host = 'localhost:5000'
+        protocol = 'http' 
+    } else {
+        host = 'directed-mender-261200.uc.r.appspot.com'
+        protocol = 'https'
+    }
+  
+    if (subdomain != null) {
+      return `${protocol}://${subdomain}.${host}`
+    }
+    return `${protocol}://${host}`
+  }
 
 function getHeaders() {
     let headers = {
