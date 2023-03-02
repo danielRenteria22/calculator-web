@@ -1,6 +1,6 @@
 <script>
-import { listOperations } from '@/api/operationRequests.js'
-import { showDialog } from 'vant';
+import { listOperations,deleteOperation } from '@/api/operationRequests.js'
+import { showDialog,showConfirmDialog } from 'vant';
 import { ref } from 'vue';
 export default {
   setup() {
@@ -62,6 +62,35 @@ export default {
       this.order = selectedOptions[1].value
       this.loadRecords()
       this.fieldValue = `${selectedOptions[0].text} - ${selectedOptions[1].text}`;
+    },
+    deleteRecord(id) {
+      showConfirmDialog({
+        title: 'Atention',
+        message: 'Are you sure you want to delete this record?',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No'
+
+      })
+      .then(() => {
+        console.log(`Deleting ${id}`)
+        deleteOperation(id).then(data => {
+          this.loadRecords()
+          if(data.error) {
+            showDialog({
+              title: 'Ups...',
+              message: data.message,
+              confirmButtonText: 'Ok'
+            })
+            return
+          }
+          showDialog({
+              title: 'Done',
+              message: 'Deleted successfully',
+              confirmButtonText: 'Ok'
+          })
+  
+        })
+      })
     }
   }
 }
@@ -118,7 +147,7 @@ export default {
         <van-col span="4">{{ record.amount }}</van-col>
         <van-col span="4">{{ record.user_balance }}</van-col>
         <van-col span="4">
-          <van-button type="danger">Delete</van-button>
+          <van-button type="danger" @click="deleteRecord(record.id)">Delete</van-button>
         </van-col>
       </van-row>
     <van-pagination 

@@ -1,4 +1,4 @@
-import {POST} from './requestHelper.js'
+import {POST, DELETE} from './requestHelper.js'
 
 export async function execute_operation(operand_1,operand_2,operation_type){
     let body = {
@@ -11,4 +11,8 @@ export async function execute_operation(operand_1,operand_2,operation_type){
 
 export async function listOperations(body) {
     return await POST(`operation/list`,body)
+}
+
+export async function deleteOperation(id) {
+    return await DELETE(`operation/${id}`)
 }
