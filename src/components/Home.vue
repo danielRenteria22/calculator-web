@@ -28,6 +28,11 @@ export default {
                 confirmButtonText: 'Ok'
             })
         })
+    },
+    logout() {
+      localStorage.setItem('accessToken', null)
+			localStorage.setItem('refreshToken', null)
+      this.$router.push('/')
     }
   }
 }
@@ -42,7 +47,7 @@ export default {
                     <van-button type="primary" to="records">Records</van-button>
                 </van-col>
                 <van-col span="8">
-                    <van-button type="danger">Logout</van-button>
+                    <van-button type="danger" @click="logout">Logout</van-button>
                 </van-col>
             </van-row>
         </template>
