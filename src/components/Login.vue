@@ -5,11 +5,13 @@ export default {
 	data() {
 		return {
 			username: '',
-			password: ''
+			password: '',
+			loading: false
 		}
 	},
 	methods: {
 		onSubmit() {
+			this.loading = true
 			login_request(this.username, this.password).then((data) => {
 				if (data.error) {
 					showDialog({
@@ -44,7 +46,7 @@ export default {
 							:rules="[{ required: true, message: 'Password is required' }]" />
 					</van-cell-group>
 					<div style="margin: 16px;">
-						<van-button round block type="primary" native-type="submit">
+						<van-button :loading="loading" round block type="primary" native-type="submit">
 							Submit
 						</van-button>
 					</div>

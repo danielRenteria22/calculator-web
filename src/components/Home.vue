@@ -7,11 +7,14 @@ export default {
       operand1: null,
       operand2: null,
       operation: 'ADDITION',
+      loading: false
     }
   },
   methods: {
     onSubmit() {
+      this.loading = true
         execute_operation(parseFloat(this.operand1),parseFloat(this.operand2),this.operation).then(data => {
+          this.loading = false
             console.log(data)
             if(data.error) {
                 showDialog({
@@ -84,7 +87,7 @@ export default {
     
           </van-cell-group>
           <div style="margin: 16px;">
-            <van-button round block type="primary" native-type="submit">
+            <van-button round block type="primary" native-type="submit" :loading="loading">
               Calculate
             </van-button>
           </div>
